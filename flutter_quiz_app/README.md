@@ -1,16 +1,9 @@
-# flutter_quiz_app
+# Quiz App
+The mobile application allows users to participate in multiple-choice games, where users choose answers and then display results after they complete the quiz.
+![res1](./assets/result/res1.png) ![res2](./assets/result/res2.png) ![res3](./assets/result/res3.png)
 
-A new Flutter project.
-
-## Getting Started
-
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## About
+1. Explore & Use More Widgets
+2. Widget lifecycle: initState,build,dispose
+3. Build More Complex User Interfaces(Column,Row,SingleChildScrollView,...)
+4. Render Content Conditionally & Lifting State Up

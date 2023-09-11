@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class StartBackground extends StatelessWidget {
   const StartBackground(this.startQuiz, {super.key});
@@ -24,10 +25,10 @@ class StartBackground extends StatelessWidget {
           //   ),
           // ),
           const SizedBox(height: 80),
-          const Text(
+          Text(
             'Learn Flutter the fun way!',
-            style: TextStyle(
-              color: Color.fromARGB(255, 237, 223, 252),
+            style: GoogleFonts.oswald(
+              color: const Color.fromARGB(255, 237, 223, 252),
               fontSize: 24,
             ),
           ),
@@ -35,10 +36,12 @@ class StartBackground extends StatelessWidget {
           OutlinedButton.icon(
             onPressed: startQuiz,
             style: OutlinedButton.styleFrom(
+              backgroundColor: const Color.fromARGB(128, 51, 39, 232),
               foregroundColor: Colors.white,
+              padding: const EdgeInsets.all(10)
             ),
             icon: const Icon(Icons.arrow_right_alt),
-            label: const Text('Start Quiz'),
+            label: Text('Start Quiz',style: GoogleFonts.oswald(fontSize: 20,color: Colors.white),),
           )
         ],
       ),
