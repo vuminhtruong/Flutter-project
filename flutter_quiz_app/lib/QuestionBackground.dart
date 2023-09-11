@@ -33,7 +33,7 @@ class _QuestionBackgroundState extends State<QuestionBackground> {
               currentQuestion.question,
               style: GoogleFonts.oswald(
                   color: const Color.fromARGB(200, 21, 241, 241),
-                  fontSize: 24,
+                  fontSize: 22,
                   fontWeight: FontWeight.bold
               ),
               textAlign: TextAlign.center,
