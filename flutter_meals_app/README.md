@@ -1,3 +1,3 @@
 # Flutter_meals_app
 
-![res1](./images/res1.png)
+![res2](./images/res2.png)
