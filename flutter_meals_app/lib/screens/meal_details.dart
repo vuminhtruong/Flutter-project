@@ -28,7 +28,13 @@ class MealDetailsScreen extends ConsumerWidget {
                     SnackBar(content: Text(wasAdded ? 'Meal added as a favorite' : 'Meal removed.')),
                   );
                 },
-                icon: Icon(isFavorite ? Icons.star : Icons.star_border)),
+                icon: AnimatedSwitcher(
+                  duration: const Duration(milliseconds: 300),
+                  transitionBuilder: (child,animation) {
+                    return RotationTransition(turns: animation,child: child,);
+                  },
+                  child: Icon(isFavorite ? Icons.star : Icons.star_border,key: ValueKey(isFavorite),)),
+                )
           ],
         ),
         body: SingleChildScrollView(
