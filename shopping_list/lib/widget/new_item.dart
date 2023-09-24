@@ -115,17 +115,22 @@ class _NewItemState extends State<NewItem> {
                         },
                         child: const Text('Reset')),
                     ElevatedButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             _formKey.currentState!.save();
                             final url = Uri.https('flutter-shopping-list-db1ca-default-rtdb.firebaseio.com','shopping-list.json');
-                            http.post(url,headers: {
+                            final response = await http.post(url,headers: {
                               'Content-type': 'application/json',
                             },body: json.encode({
                               'name': _enteredName,
                               'quantity': _enteredQuantity,
                               'category': _selectedCategory.title,
                             },));
+
+                            if(!context.mounted) {
+                              return;
+                            } // Async Tasks,check current widget
+
                             Navigator.of(context).pop();
                           }
                         },
