@@ -1,3 +1,3 @@
 # shopping_list
 
-![res2](./images/res2.png)
+![load1](./images/load1.png) ![load2](./images/load2.png)
