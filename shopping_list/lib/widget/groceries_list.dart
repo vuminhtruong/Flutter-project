@@ -18,6 +18,7 @@ class GroceriesList extends StatefulWidget {
 class _GroceriesListState extends State<GroceriesList> {
   List<GroceryItem> _groceryItem = [];
   bool _isLoading = true;
+  String? _errorMessage;
 
   @override
   void initState() {
@@ -30,6 +31,19 @@ class _GroceriesListState extends State<GroceriesList> {
         'flutter-shopping-list-db1ca-default-rtdb.firebaseio.com',
         'shopping-list.json');
     final response = await http.get(url);
+    if(response.statusCode > 400) {
+      setState(() {
+        _errorMessage = 'Failed to fetch data.Please try again later';
+      });
+    }
+
+    if(response.body == 'null') {
+      setState(() {
+        _isLoading = false;
+      });
+      return;
+    }
+
     final Map<String, dynamic> listData = json.decode(response.body);
     final List<GroceryItem> loadedItems = [];
 
@@ -64,10 +78,19 @@ class _GroceriesListState extends State<GroceriesList> {
       content = ListView.builder(
           itemCount: _groceryItem.length,
           itemBuilder: (ctx, index) => Dismissible(
-              onDismissed: (direction) {
+              onDismissed: (direction) async {
                 setState(() {
                   _groceryItem.remove(_groceryItem[index]);
                 });
+
+                final url = Uri.https('flutter-shopping-list-db1ca-default-rtdb.firebaseio.com',
+                    'shopping-list/${_groceryItem[index].id}.json');
+                final response = await http.delete(url);
+                if(response.statusCode >= 400) {
+                  setState(() {
+                    _groceryItem.insert(index, _groceryItem[index]);
+                  });
+                }
               },
               key: ValueKey(_groceryItem[index].id),
               child: ListTile(
@@ -79,6 +102,10 @@ class _GroceriesListState extends State<GroceriesList> {
                 ),
                 trailing: Text(_groceryItem[index].quantity.toString()),
               )));
+    }
+
+    if(_errorMessage != null) {
+      content = Center(child: Text(_errorMessage!),);
     }
 
     return Scaffold(
