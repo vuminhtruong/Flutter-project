@@ -1,3 +1,7 @@
-# shopping_list
+# Shopping List
 
-![load1](./images/load1.png) ![load2](./images/load2.png)
+![gif4](./images/gif4.gif)
+
+## About
+1. Building & Using Forms
+2. Sending HTTP Requests From Flutter Apps To Backends(Firebase)
