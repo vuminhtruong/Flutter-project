@@ -8,7 +8,7 @@ class PlacesScreen extends ConsumerWidget {
   const PlacesScreen({super.key});
 
   @override
-  Widget build(BuildContext context,WidgetRef ref) {
+  Widget build(BuildContext context, WidgetRef ref) {
     final userPlaces = ref.watch(userPlacesProvider);
 
     return Scaffold(
@@ -21,12 +21,14 @@ class PlacesScreen extends ConsumerWidget {
                   MaterialPageRoute(builder: (ctx) => const AddPlaceScreen()),
                 );
               },
-              icon: const Icon(Icons.add)
-          )
+              icon: const Icon(Icons.add))
         ],
       ),
-      body: PlacesList(
-        places: userPlaces,
+      body: Padding(
+        padding: const EdgeInsets.only(top: 8),
+        child: PlacesList(
+          places: userPlaces,
+        ),
       ),
     );
   }
