@@ -1,3 +1,3 @@
 # Favorite Place
 
-![res1](./images/res1.png)
+![gif1](./images/gif1.gif)
