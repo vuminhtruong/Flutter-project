@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:favorite_place/model/place_location.dart';
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
 // import 'package:location/location.dart';
@@ -15,7 +16,7 @@ class LocationInput extends StatefulWidget {
 }
 
 class _LocationInputState extends State<LocationInput> {
-  // Location? _pickedLocation;
+  PlaceLocation? _pickedLocation;
   var _isGettingLocation = false;
 
   void _getCurrentLocation() async {
@@ -49,8 +50,8 @@ class _LocationInputState extends State<LocationInput> {
     final resData = json.decode(response.body);
     final address = resData['results'][0]['formatted_address'];
 
-
     setState(() {
+      _pickedLocation = PlaceLocation(latitude: lat, longitude: long, address: address);
       _isGettingLocation = false;
     });
 
