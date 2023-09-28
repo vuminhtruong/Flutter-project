@@ -7,7 +7,9 @@ import 'package:geolocator/geolocator.dart';
 import 'package:http/http.dart' as http;
 
 class LocationInput extends StatefulWidget {
-  const LocationInput({super.key});
+  const LocationInput({super.key, required this.onPickLocation});
+
+  final void Function(PlaceLocation location) onPickLocation;
 
   @override
   State<LocationInput> createState() {
@@ -64,6 +66,7 @@ class _LocationInputState extends State<LocationInput> {
       _isGettingLocation = false;
     });
 
+    widget.onPickLocation(_pickedLocation!);
   }
 
   @override
