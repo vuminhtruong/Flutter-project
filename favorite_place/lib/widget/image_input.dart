@@ -1,21 +1,20 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart';
 
-class ImageInput extends ConsumerStatefulWidget {
+class ImageInput extends StatefulWidget {
   const ImageInput({super.key,required this.onPickImage});
 
   final void Function(File image) onPickImage;
 
   @override
-  ConsumerState<ImageInput> createState() {
+  State<ImageInput> createState() {
     return _ImageInputState();
   }
 }
 
-class _ImageInputState extends ConsumerState<ImageInput> {
+class _ImageInputState extends State<ImageInput> {
   File? _selectedImage;
 
   void _takePicture() async {
