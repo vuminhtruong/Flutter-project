@@ -1,3 +1,4 @@
+import 'package:favorite_place/screen/map_screen.dart';
 import 'package:flutter/material.dart';
 
 import '../model/place.dart';
@@ -33,7 +34,19 @@ class PlaceDetailScreen extends StatelessWidget {
               right: 0,
               child: Column(
                 children: [
-                  CircleAvatar(radius: 50,backgroundImage: NetworkImage(locationImage),),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(MaterialPageRoute(
+                          builder: (ctx) => MapScreen(
+                                location: place.location,
+                                isSelecting: false,
+                              )));
+                    },
+                    child: CircleAvatar(
+                      radius: 50,
+                      backgroundImage: NetworkImage(locationImage),
+                    ),
+                  ),
                   Container(
                     alignment: Alignment.center,
                     padding: const EdgeInsets.symmetric(
@@ -41,19 +54,21 @@ class PlaceDetailScreen extends StatelessWidget {
                       vertical: 16,
                     ),
                     decoration: const BoxDecoration(
-                      gradient: LinearGradient(colors: [
-                        Colors.transparent,
-                        Colors.white,
-                      ],
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
+                      gradient: LinearGradient(
+                        colors: [
+                          Colors.transparent,
+                          Colors.white,
+                        ],
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
                       ),
                     ),
                     child: Text(
                       place.location.address,
                       textAlign: TextAlign.center,
                       style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                        color: Theme.of(context).colorScheme.onBackground),),
+                          color: Theme.of(context).colorScheme.onBackground),
+                    ),
                   )
                 ],
               ),
