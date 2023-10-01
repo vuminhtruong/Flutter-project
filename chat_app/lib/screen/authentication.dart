@@ -1,3 +1,4 @@
+import 'package:chat_app/widget/user_image_picker.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -73,6 +74,8 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
+                          if(!_isLogin)
+                            const UserImagePicker(),
                           TextFormField(
                             decoration: const InputDecoration(
                               labelText: 'Email Address',
