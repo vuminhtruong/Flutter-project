@@ -1,16 +1,16 @@
 # Chat App
+The group chat application allows users to login and register and chat with each other
 
-A new Flutter project.
+![gif3](./images/gì3.gif)
 
-## Getting Started
+## About
+1. Authenticate users through Firebase Authentication
+2. Send user data to Firebase
+3. Use Firebase utilities (Authentication,Storage,Firestore Database,Messaging)
+4. Use push notification
 
-This project is a starting point for a Flutter application.
-
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+## Feature
+1. Login,Sign Up
+2. Upload image
+3. Chat between users
+4. New message notification
