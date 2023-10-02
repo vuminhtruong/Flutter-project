@@ -23,6 +23,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
   var _isLogin = true;
   var _enteredEmail = '';
   var _enteredPassword = '';
+  var _enteredUsername = '';
   File? _selectedImage;
   var _isAuthenticating = false;
 
@@ -54,10 +55,13 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
         await storageRef.putFile(_selectedImage!);
         final imageUrl = await storageRef.getDownloadURL();
 
-        FirebaseFirestore.instance.collection('users').doc(userCredentials.user!.uid).set({
-          'username' : 'to be done...',
-          'email' : _enteredEmail,
-          'image_url' : imageUrl,
+        FirebaseFirestore.instance
+            .collection('users')
+            .doc(userCredentials.user!.uid)
+            .set({
+          'username': _enteredUsername,
+          'email': _enteredEmail,
+          'image_url': imageUrl,
         });
       }
     } on FirebaseAuthException catch (error) {
@@ -124,6 +128,23 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                               _enteredEmail = value!;
                             },
                           ),
+                          if (!_isLogin)
+                            TextFormField(
+                              decoration:
+                                  const InputDecoration(labelText: 'Username'),
+                              enableSuggestions: false,
+                              validator: (value) {
+                                if (value == null ||
+                                    value.isEmpty ||
+                                    value.trim().length < 4) {
+                                  return 'Please enter a valid username';
+                                }
+                                return null;
+                              },
+                              onSaved: (value) {
+                                _enteredUsername = value!;
+                              },
+                            ),
                           TextFormField(
                             decoration: const InputDecoration(
                               labelText: 'Password',
@@ -142,7 +163,7 @@ class _AuthenticationScreenState extends State<AuthenticationScreen> {
                           const SizedBox(
                             height: 12,
                           ),
-                          if(_isAuthenticating)
+                          if (_isAuthenticating)
                             const CircularProgressIndicator(),
                           if (!_isAuthenticating)
                             ElevatedButton(
